@@ -78,16 +78,23 @@ const drawSomeLines = () => {
 }
 
 
-for (let i = 0; i < ((HEIGHT + WIDTH) / 3); i++) {
-  drawSomeLines();
-}
+const TOTAL_LINES = (HEIGHT + WIDTH) / 3;
+const TOTAL_DURATION = 1200;
+const SHAPE_POW = 0.5;
 
-// (function drawLine() {
-//   drawSomeLines();
-//   frame = requestAnimationFrame(drawLine);
-// })();
+let drawnSoFar = 0;
+requestAnimationFrame(function drawSome(t) {
+  const normalized_progress = Math.min(1, t / TOTAL_DURATION);
+  const shaped_progress = Math.pow(normalized_progress, SHAPE_POW);
+  const target = TOTAL_LINES * shaped_progress;
+  const todo = Math.floor(target - drawnSoFar);
+  for (let i = 0; i < todo; i++) {
+    drawSomeLines();
+  }
+  drawnSoFar += todo;
+  if (t < TOTAL_DURATION) {
+    requestAnimationFrame(drawSome);
+  }
+});
 
-setTimeout(() => stars.classList.add('ready'), 400);
-
-setTimeout(() => cancelAnimationFrame(frame), 4000);
-
+stars.classList.add('ready');
