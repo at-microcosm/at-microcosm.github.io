@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <title>microcosm: self-hosted atproto building blocks</title>
+    <meta name="description" content="Decentralizing atproto with self-hosted services that are cheap to run and work at bluesky scale" />
+    <link rel="canonical" href="https://www.microcosm.blue/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/main.css" />
+    <script type="application/ld+json">
+    {
+      "@context" : "https://schema.org",
+      "@type" : "WebSite",
+      "name" : "microcosm",
+      "url" : "https://www.microcosm.blue/",
+    }
+    </script>
+    <script type="text/javascript">document.documentElement.classList.remove('no-js');</script>
+    <script type="text/javascript" src="/main.js" async></script>
+  </head>
+
+  <body>
+    <div id="bg">
+      <canvas id="stars"></canvas>
+    </div>
+
+    <div class="stuff">
+      <h1>microcosm</h1>
+      <p>Decentralizing atproto with self-hosted services that are cheap to run and work at bluesky scale.</p>
+      <p><em>Project status: extremely work-in-progress</em></p>
+
+      <h2>Used by</h2>
+      <ul>
+        <li><p><a href="https://skyblur.uk" target="_blank">Skyblur</a> uses <strong>constellation</strong> to show likes, reposts, and comments</p></li>
+        <li><p><a href="https://deletions.bsky.bad-example.com" target="_blank">Final Words</a> uses <strong>constellation</strong> to show likes on anonymized deleting posts</p></li>
+      </ul>
+
+      <h2>Self-host ATProtocol building blocks</h2>
+
+      <div class="blahs">
+        <div class="thing">
+          <h2><a href="https://github.com/atcosm/links/tree/main/constellation">Constellation</a></h2>
+          <p>A global atproto backlink index</p>
+          <ul>
+            <li>Self host: handles the full atproto firehose write throughput on a raspberry pi.</li>
+            <li>Storage efficient: less than 2GB/day disk consumption.</li>
+            <li>Privacy-conscious: handles record deletion and account de/re-activation/deletion.</li>
+            <li>Simple JSON API ✨</li>
+          </ul>
+          <p><em>Status: works today. API unstable.</em></p>
+          <p>
+            <a class="button" href="https://links.bsky.bad-example.com/">live instance</a>
+            <a class="button" href="https://github.com/atcosm/links/tree/main/constellation">source</a>
+          </p>
+        </div>
+
+        <div class="thing">
+          <h2>Spacedust</h2>
+          <p>Backlink notification webhooks</p>
+          <p><em>Status: in design</em></p>
+        </div>
+
+        <div class="thing">
+          <h2>Windtunnel</h2>
+          <p>Chainable jetstream firehose fan-out service with accurate cursor cutover, hot failover, and dropped-event detection</p>
+          <p><em>Status: in design</em></p>
+        </div>
+
+        <div class="thing">
+          <h2>Weather Report</h2>
+          <p>Interactive lexicon exploration generated from all records seen in the wild</p>
+          <p><em>Status: in design</em></p>
+        </div>
+
+        <div class="thing">
+          <h2>Star Map</h2>
+          <p>Identity-lexicon index enabling efficient full-network backfill of smaller-volume record collections</p>
+          <p><em>Status: in design</em></p>
+        </div>
+
+        <div class="thing">
+          <h2>telescope</h2>
+          <p>Jetstream-like targeted backfill service via Star Map, with accurate handoff to live firehose</p>
+          <p><em>Status: in design</em></p>
+        </div>
+
+      </div>
+
+
+      <h2>Built on</h2>
+
+      <div class="blahs">
+        <div class="thing">
+          <h2>Backyard</h2>
+          <p>Self-hosted Bluesky-compatible appview built on microcosm services.</p>
+          <p><em>Status: in design</em></p>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
