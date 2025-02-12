@@ -79,7 +79,7 @@ const drawSomeLines = () => {
 
 
 const TOTAL_LINES = (HEIGHT + WIDTH) / 3;
-const TOTAL_DURATION = 1200;
+const TOTAL_DURATION = 1600;
 const SHAPE_POW = 0.5;
 
 let drawnSoFar = 0;
