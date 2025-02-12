@@ -7,6 +7,20 @@ body {
   padding-top: 7em;
 }
 
+/* hsluv rotation:
+ * Array.from({length: 9}).map((_, i) => $.husl.toHex(i / 10 * 360, 81, 72)).map((h, i) => `.t${i+1} { color: ${h} }`).join('\n')
+ * works on their old site https://husl-colors.org/
+ */
+.t1 { color: #f396a9 }
+.t2 { color: #f49c5c }
+.t3 { color: #c7b04c }
+.t4 { color: #92be4c }
+.t5 { color: #4ec688 }
+.t6 { color: #51c2b6 }
+.t7 { color: #54bed7 }
+.t8 { color: #8fb1f1 }
+.t9 { color: #ce9df1 }
+
 #bg {
   display: block;
   position: fixed;
