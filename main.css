@@ -84,10 +84,17 @@ h1, h2 {
 }
 .thing {
   background: hsla(290, 59%, 9%, 0.2);
-  border: 1px solid peachpuff;
+  border-width: 1px;
+  border-style: dashed;
+  border-color: burlywood;
   border-radius: 0.6em;
   flex: 1 1 40%;
   padding: 1em;
+  opacity: 0.9;
+}
+.thing.rly {
+  border-style: solid;
+  opacity: 1;
 }
 h2 {
   margin-top: 4em;
@@ -112,10 +119,12 @@ a.button {
   background: hsla(290, 59%, 9%, 0.2);
   font-family: ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari, 'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif;
   display: inline-block;
-  border: 1px solid peachpuff;
+  border-width: 0.5px;
+  border-style: solid;
   border-radius: 0.3em;
   padding: 0 0.6em;
   margin-right: 0.3em;
+  font-size: 0.9em;
 }
 a.button:hover,
 a.button:active {
@@ -128,3 +137,17 @@ a.button:active {
     flex-basis: 80%;
   }
 }
+
+/*
+ * Array.from({length: 9}).map((_, i) => $.husl.toHex(i / 10 * 360, 39, 56)).map((h, i) => `.b${i+1} { border-color: ${h} }`).join('\n')
+ * at https://husl-colors.org
+ */
+.b1 { border-color: #c16d7f }
+.b2 { border-color: #a67d68 }
+.b3 { border-color: #8f8667 }
+.b4 { border-color: #7b8c67 }
+.b5 { border-color: #698f78 }
+.b6 { border-color: #6b8d88 }
+.b7 { border-color: #6c8b95 }
+.b8 { border-color: #7187b2 }
+.b9 { border-color: #9c78b6 }
