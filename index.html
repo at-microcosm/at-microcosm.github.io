@@ -2,8 +2,8 @@
 <html lang="en" class="no-js">
   <head>
     <meta charset="utf-8" />
-    <title>microcosm: self-hosted atproto building blocks</title>
-    <meta name="description" content="Decentralizing atproto with small services that are cheap to run and work at bluesky scale" />
+    <title>microcosm: atproto building blocks</title>
+    <meta name="description" content="Open-source atproto services and resilient community infrastruture to launch your next app" />
     <link rel="canonical" href="https://www.microcosm.blue/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/main.css" />
@@ -28,84 +28,234 @@
       <h1>
         <span class="t1">m</span><span class="t2">i</span><span class="t3">c</span><span class="t4">r</span><span class="t5">o</span><span class="t6">c</span><span class="t7">o</span><span class="t8">s</span><span class="t9">m</span>
       </h1>
-      <p>Decentralizing AT-Protocol with self-hostable services you can run from home and work at Bluesky scale.</p>
-      <p><em>Project status: extremely work-in-progress</em></p>
+      <div class="what">
+        <p><strong>Open-source APIs</strong> to kick-start your next app on ATProto.
+          <br/><strong>Community-supported infrastructure</strong> ready for production.</p>
+      </div>
 
-      <h2>AT-Protocol building blocks</h2>
+    </div>
 
-      <div class="blahs">
-        <div class="thing rly b1">
-          <h2 class="t1"><a href="https://github.com/atcosm/links/tree/main/constellation">Constellation</a></h2>
-          <p>Global backlink index that <strong>connects social interactions</strong></p>
-          <ul>
-            <li>Low power: works down to a Raspberry Pi</li>
-            <li>Storage efficient: less than 2GB/day</li>
-            <li>Privacy-conscious: respects record deletion and account transitions</li>
-            <li>Simple JSON API ✨</li>
-          </ul>
-          <p><em>Status: works today. API still stabilizing.</em></p>
-          <p>
-            <a class="button b1" href="https://constellation.microcosm.blue/">🖥️ live instance</a>
-            <a class="button b6" href="https://github.com/atcosm/links/tree/main/constellation">👩🏻‍💻 source</a>
-          </p>
-        </div>
+    <div class="stuff">
+      <h2 id="quickstart"><a href="#quickstart">Quickstart</a></h2>
 
-        <div class="thing">
-          <h2>Spacedust</h2>
-          <p>Backlink notification webhooks</p>
-          <p><em>Status: in design</em></p>
-        </div>
+      <input type="radio" name="app" id="quick-constellation" style="display: none" checked />
+      <input type="radio" name="app" id="quick-spacedust" style="display: none" />
+      <input type="radio" name="app" id="quick-slingshot" style="display: none" />
 
-        <div class="thing">
-          <h2>Windtunnel</h2>
-          <p>Chainable jetstream firehose fan-out service with accurate cursor cutover, hot failover, and dropped-event detection</p>
-          <p><em>Status: in design</em></p>
-        </div>
-
-        <div class="thing">
-          <h2>Weather Report</h2>
-          <p>Interactive lexicon exploration generated from all records seen in the wild</p>
-          <p><em>Status: in design</em></p>
-        </div>
-
-        <div class="thing">
-          <h2>Star Map</h2>
-          <p>Identity-lexicon index enabling efficient full-network backfill of smaller-volume record collections</p>
-          <p><em>Status: in design</em></p>
-        </div>
-
-        <div class="thing">
-          <h2>Telescope</h2>
-          <p>Jetstream-like targeted backfill service via Star Map, with accurate handoff to live firehose</p>
-          <p><em>Status: in design</em></p>
-        </div>
-
+      <div class="top3">
+        <label class="quick-option" for="quick-constellation" class="selected">
+          <img src="/static/cass.png" />
+          <h3>Constellation</h3>
+          <p>Backlink index</p>
+        </label>
+        <label class="quick-option" for="quick-spacedust">
+          <img src="/static/s2.png" />
+          <h3>Spacedust</h3>
+          <p>Interactions firehose</p>
+        </label>
+        <label class="quick-option" for="quick-slingshot">
+          <img src="/static/slingshot.png" />
+          <h3>Slingshot</h3>
+          <p>Records & identities</p>
+        </label>
       </div>
 
 
-      <h2>Used by</h2>
-      <ul>
-        <li><p><a href="https://skyblur.uk" target="_blank" class="t2">Skyblur</a> uses <strong>Constellation</strong> to show likes, reposts, and comments</p></li>
-        <li><p><a href="https://deletions.bsky.bad-example.com" target="_blank" class="t1">Final Words</a> uses <strong>Constellation</strong> to show likes on anonymized deleting posts</p></li>
-      </ul>
+      <div class="source-container" id="get_likes_count_py_source">
+        <input type="checkbox" class="visually-hidden show-imports" id="show-constellation-imports" />
+        <h4 class="filename">
+          get_likes_count.py <small><label for="show-constellation-imports">imports</label></small>
+        </h4>
 
-
-      <h2>Apps building on <strong>microcosm</strong></h2>
-
-      <div class="blahs">
-        <div class="thing">
-          <h2>Backyard</h2>
-          <p>Self-hosted Bluesky-compatible appview built on microcosm services.</p>
-          <p><em>Status: in design</em></p>
+        <div class="source">
+          <pre></pre>
+          <pre class="import">import <span class="v">requests</span></pre>
+          <pre class="import"></pre>
+          <pre><span class="v">data</span> = <span class="v">requests</span><span class="f">.get</span><span class="p">(</span></pre>
+          <pre>    <span class="s">"https://<span class="hey">constellation</span>.microcosm.blue/links/count/<span class="hey">distinct-dids</span>"</span>,</pre>
+          <pre>    <span class="k">params</span>=<span class="b">{</span></pre>
+          <pre>        <span class="s">"target"</span>: <span class="s">"<span class="u"><a href="https://bsky.app/profile/did:plc:hdhoaan3xa3jiuq4fg4mefid/post/3lwcmto4tck2h" target="_blank">at://did:plc:hdhoaan3xa3jiuq4fg4mefid/app.bsky.feed.post/3lwcmto4tck2h</a></span>"</span>,</pre>
+          <pre>        <span class="s">"collection"</span>: <span class="s">"<span class="hey">app.bsky.feed.like</span>"</span>,</pre>
+          <pre>        <span class="s">"path"</span>: <span class="s">"<span class="hey">.subject.uri</span>"</span>,</pre>
+          <pre>    <span class="b">}</span>,</pre>
+          <pre><span class="p">)</span><span class="f">.json</span><span class="p">()</span></pre>
+          <pre></pre>
+          <pre><span class="f">print</span><span class="p">(</span><span class="s">"this post has"</span>, <span class="v">data</span><span class="b">[</span><span class="s">"total"</span><span class="b">]</span>, <span class="s">"likes"</span><span class="p">)</span></pre>
+          <pre class="end"></pre>
+        </div>
+        <div class="action">
+          <!-- todo: notice if js is not enabled -->
+          <button onClick="javascript:get_likes_count_py()">run »</button>
+          <span id="get_likes_count_py_status"></span>
         </div>
       </div>
+
+      <div class="source-container hidden" id="subscribe_follows_sh_source">
+        <h4 class="filename">
+          subscribe_follows.sh
+        </h4>
+
+        <div class="source">
+          <pre></pre>
+          <pre><span class="v">HOST</span>=<span class="s">wss://spacedust.microcosm.blue</span></pre>
+          <pre><span class="v">FOLLOW</span>=<span class="hey">app.bsky.graph.follow:subject</span></pre>
+          <pre><span class="v">DID</span>=<span class="u"><a href="https://bsky.app/profile/did:plc:z72i7hdynmk6r22z27h6tvur" target="_blank">did:plc:z72i7hdynmk6r22z27h6tvur</a></span>  <span class="c"># @bsky.app</span></pre>
+          <pre></pre>
+          <pre><span class="f">websocat</span> <span class="s">"<span class="v">$HOST</span>/<span class="hey">subscribe</span>?wantedSources=<span class="v">$FOLLOW</span>&wantedSubjects=<span class="v">$DID</span>"</span></pre>
+          <pre class="end"></pre>
+        </div>
+        <div class="action">
+          <!-- todo: notice if js is not enabled -->
+          <button onClick="javascript:subscribe_follows_sh()">run »</button>
+          <span id="subscribe_follows_sh_status"></span>
+        </div>
+      </div>
+
+      <div class="source-container hidden" id="handle_to_pds_js_source">
+        <h4 class="filename">
+          handle_to_pds.js
+        </h4>
+
+        <div class="source">
+          <pre></pre>
+          <pre>const <span class="v">url</span> = <span class="f">new URL</span><span class="p">(</span><span class="s">"https://<span class="hey">slingshot</span>.microcosm.blue/xrpc/com.bad-example.identity.<span class="hey">resolveMiniDoc</span>"</span><span class="p">)</span>;</pre>
+          <pre><span class="v">url.searchParams</span><span class="f">.set</span>(<span class="s">"identifier"</span>, <span class="s">"<span class="u">bad-example.com</span>"</span>);</pre>
+          <pre></pre>
+          <pre><span class="f">fetch</span><span class="p">(</span><span class="v">url</span><span class="p">)</span></pre>
+          <pre>  <span class="f">.then</span><span class="p">(</span><span class="v">res</span> => <span class="v">res</span><span class="f">.json</span><span class="p">())</span></pre>
+          <pre>  <span class="f">.then</span><span class="p">(</span><span class="v">mini</span> => <span class="v">console</span><span class="f">.log</span><span class="p">(</span><span class="s">`${<span class="v">mini.handle</span>}'s PDS: ${<span class="v">mini.pds</span>}`</span><span class="p">))</span>;</pre>
+          <pre class="end"></pre>
+        </div>
+        <div class="action">
+          <!-- todo: notice if js is not enabled -->
+          <button onClick="javascript:handle_to_pds_js()">run »</button>
+          <span id="handle_to_pds_js_status"></span>
+        </div>
+      </div>
+
+      <h2 id="explore"><a href="#explore">Network exploration</a></h2>
+
+      <h2 id="infra"><a href="#infra">Community infrastructure</a></h2>
+
+    </div>
+
+    <div class="stuff footer">
 
       <h2 id="about"><a href="#about">About</a></h2>
 
-      <p><strong>microcosm</strong> is currently a lil side-project by <a href="https://bsky.app/profile/bad-example.com" target="_blank" class="t8">@bad-example.com</a>, maybe it will grow. If you want, you can follow <a href="https://bsky.app/profile/microcosm.blue" target="_blank" class="t7">@microcosm.blue</a> for updates, or read my posts about atproto at <a href="https://bsky.bad-example.com" target="_blank" class="t6">bsky.bad-example.com</a>. Apparently it's possible to <a href="https://github.com/sponsors/uniphil" target="_blank" class="t9">sponsor me on github</a>.</p>
+      <p><strong>microcosm</strong> is a project by <a href="https://bsky.app/profile/bad-example.com" target="_blank" class="t8">@bad-example.com</a>. If you want, you can follow <a href="https://bsky.app/profile/microcosm.blue" target="_blank" class="t7">@microcosm.blue</a> for updates, or read posts about atproto at <a href="https://bsky.bad-example.com" target="_blank" class="t5">bsky.bad-example.com</a>. You can <a href="https://github.com/sponsors/uniphil" target="_blank" class="t3">sponsor me on github</a> or <a href="https://ko-fi.com/bad_example" target="_blank" class="t2">support on ko-fi</a>.</p>
 
-      <p>A Code of Conduct will come soon. Until then I offer this passage, quoted from the <a href="https://github.com/GlasgowEmbedded/glasgow/blob/main/CODE_OF_CONDUCT.md" title="Code of Conduct from the Glasgow project" class="t5">Glasgow Interface Explorer</a> project: <i>For the avoidance of doubt, we have virtually no tolerance for: sexism, misogyny, racism, xenophobia, homophobia, transphobia, queerphobia, pluralphobia, stalking, harassment, unwelcome sexual advances of any kind, doxing, direct violation of non-consent, general bigotry. (This includes egregious off-space behavior if it appears relevant.)</i></p>
-
+      <p>A Code of Conduct will come soon. Until then, consider this passage, quoted from the <a href="https://github.com/GlasgowEmbedded/glasgow/blob/main/CODE_OF_CONDUCT.md" title="Code of Conduct from the Glasgow project" class="t1">Glasgow Interface Explorer</a> project: <i>For the avoidance of doubt, we have virtually no tolerance for: sexism, misogyny, racism, xenophobia, homophobia, transphobia, queerphobia, pluralphobia, stalking, harassment, unwelcome sexual advances of any kind, doxing, direct violation of non-consent, general bigotry. (This includes egregious off-space behavior if it appears relevant.)</i></p>
     </div>
+
+    <script>
+function get_likes_count_py() {
+  var statusEl = document.getElementById('get_likes_count_py_status');
+  statusEl.className = '';
+  statusEl.textContent = 'running…';
+
+  var subject = encodeURIComponent('at://did:plc:hdhoaan3xa3jiuq4fg4mefid/app.bsky.feed.post/3lwcmto4tck2h');
+  var collection = encodeURIComponent('app.bsky.feed.like')
+  var path = encodeURIComponent('.subject.uri');
+  var query = '?target=' + subject + '&collection=' + collection + '&path=' + path;
+
+  fetch('https://constellation.microcosm.blue/links/count/distinct-dids' + query).then(
+    function(r) {
+      statusEl.textContent = 'got response!';
+      if (!r.ok) {
+        statusEl.textContent = 'non-ok response';
+        statusEl.classList.add('error');
+        console.error('non-ok:', r);
+        return;
+      }
+      r.text().then(
+        function(t) {
+          statusEl.textContent = 'response: ' + t;
+          statusEl.classList.add('success');
+        },
+        function(e) {
+          statusEl.textContent = 'failed to get response body';
+          statusEl.classList.add('error');
+          console.error(e);
+        },
+      );
+    },
+    function(e) {
+      statusEl.textContent = 'request failed';
+      statusEl.classList.add('error');
+      console.error(e);
+    },
+  );
+}
+
+var socket;
+function subscribe_follows_sh() {
+  var statusEl = document.getElementById('subscribe_follows_sh_status');
+  statusEl.className = '';
+  statusEl.textContent = 'connecting…';
+
+  const url = new URL('wss://spacedust.microcosm.blue/subscribe');
+  url.searchParams.set('wantedSources', 'app.bsky.graph.follow:subject');
+  url.searchParams.set('wantedSubjectDids', 'did:plc:z72i7hdynmk6r22z27h6tvur'); // @bsky.app
+
+  if (socket) socket.close();
+  socket = new WebSocket(url);
+  socket.addEventListener('open', () => statusEl.textContent = 'connected! listening for follows…');
+  socket.addEventListener('close', () => statusEl.textContent = 'disconnected.');
+  socket.addEventListener('error', e => {
+    statusEl.textContent = 'websocket error encountered.';
+    statusEl.classList.add('error');
+  });
+
+  socket.addEventListener('message', message => {
+    const event = JSON.parse(message.data);
+    if (event.kind === "link" && event.link.operation === "create") {
+      const sourceDid = event.link.source_record.split('/')[2]; // at://[DID]/...
+      statusEl.textContent = `${sourceDid} followed @bsky.app`;
+    }
+  });
+}
+
+function handle_to_pds_js() {
+  var statusEl = document.getElementById('handle_to_pds_js_status');
+  statusEl.className = '';
+  statusEl.textContent = 'connecting…';
+
+  const url = new URL('https://slingshot.microcosm.blue/xrpc/com.bad-example.identity.resolveMiniDoc');
+  url.searchParams.set('identifier', 'bad-example.com');
+
+  fetch(url).then(
+    function(r) {
+      statusEl.textContent = 'got response!';
+      if (!r.ok) {
+        statusEl.textContent = 'non-ok response';
+        statusEl.classList.add('error');
+        console.error('non-ok:', r);
+        return;
+      }
+      r.json().then(
+        function(j) {
+          statusEl.textContent = `${j.handle}'s PDS: ${j.pds}`;
+          statusEl.classList.add('success');
+        },
+        function(e) {
+          statusEl.textContent = 'failed to get response body';
+          statusEl.classList.add('error');
+          console.error(e);
+        },
+      );
+    },
+    function(e) {
+      statusEl.textContent = 'request failed';
+      statusEl.classList.add('error');
+      console.error(e);
+    },
+  );
+
+
+
+}
+    </script>
+
   </body>
 </html>
