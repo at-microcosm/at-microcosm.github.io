@@ -73,7 +73,7 @@ body {
 /*  font-family: ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari, 'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif;*/
 }
 .stuff.footer {
-  max-width: 42rem;
+  max-width: 36rem;
 }
 .what {
   text-align: center;
@@ -316,17 +316,33 @@ a.button:active {
   max-width: 100%;
   max-width: calc(100% - 1rem);
   color: #ccc;
-  margin: 1rem auto;
+  margin: 1rem auto 0;
   border: 0.5px solid #222;
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: -1rem 0 1rem -1rem hsla(0, 0%, 0%, 0.8) inset;
 }
 
-#quick-constellation:not(:checked) ~ #get_likes_count_py_source,
-#quick-spacedust:not(:checked) ~ #subscribe_follows_sh_source,
-#quick-slingshot:not(:checked) ~ #handle_to_pds_js_source {
+#quick-constellation:not(:checked) ~ #api-app-constellation,
+#quick-spacedust:not(:checked) ~ #api-app-spacedust,
+#quick-slingshot:not(:checked) ~ #api-app-slingshot {
   display: none;
+}
+
+.api-app {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.api-info {
+  padding: 0.5rem;
+  flex-shrink: 1;
+  flex-basis: 36rem;
+}
+.api-info-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
 }
 
 .source-container.hidden {
@@ -441,4 +457,8 @@ a.button:active {
 .source-container button::before,
 .source-container button::after {
   content: ' ';
+}
+
+.api-intro {
+  margin: 0 0.5rem;
 }

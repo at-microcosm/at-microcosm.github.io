@@ -60,76 +60,116 @@
         </label>
       </div>
 
+      <div class="api-app" id="api-app-constellation">
+        <div class="source-container" id="get_likes_count_py_source">
+          <input type="checkbox" class="visually-hidden show-imports" id="show-constellation-imports" />
+          <h4 class="filename">
+            get_likes_count.py <small><label for="show-constellation-imports">imports</label></small>
+          </h4>
 
-      <div class="source-container" id="get_likes_count_py_source">
-        <input type="checkbox" class="visually-hidden show-imports" id="show-constellation-imports" />
-        <h4 class="filename">
-          get_likes_count.py <small><label for="show-constellation-imports">imports</label></small>
-        </h4>
-
-        <div class="source">
-          <pre></pre>
-          <pre class="import">import <span class="v">requests</span></pre>
-          <pre class="import"></pre>
-          <pre><span class="v">data</span> = <span class="v">requests</span><span class="f">.get</span><span class="p">(</span></pre>
-          <pre>    <span class="s">"https://<span class="hey">constellation</span>.microcosm.blue/links/count/<span class="hey">distinct-dids</span>"</span>,</pre>
-          <pre>    <span class="k">params</span>=<span class="b">{</span></pre>
-          <pre>        <span class="s">"target"</span>: <span class="s">"<span class="u"><a href="https://bsky.app/profile/did:plc:hdhoaan3xa3jiuq4fg4mefid/post/3lwcmto4tck2h" target="_blank">at://did:plc:hdhoaan3xa3jiuq4fg4mefid/app.bsky.feed.post/3lwcmto4tck2h</a></span>"</span>,</pre>
-          <pre>        <span class="s">"collection"</span>: <span class="s">"<span class="hey">app.bsky.feed.like</span>"</span>,</pre>
-          <pre>        <span class="s">"path"</span>: <span class="s">"<span class="hey">.subject.uri</span>"</span>,</pre>
-          <pre>    <span class="b">}</span>,</pre>
-          <pre><span class="p">)</span><span class="f">.json</span><span class="p">()</span></pre>
-          <pre></pre>
-          <pre><span class="f">print</span><span class="p">(</span><span class="s">"this post has"</span>, <span class="v">data</span><span class="b">[</span><span class="s">"total"</span><span class="b">]</span>, <span class="s">"likes"</span><span class="p">)</span></pre>
-          <pre class="end"></pre>
+          <div class="source">
+            <pre></pre>
+            <pre class="import">import <span class="v">requests</span></pre>
+            <pre class="import"></pre>
+            <pre><span class="v">data</span> = <span class="v">requests</span><span class="f">.get</span><span class="p">(</span></pre>
+            <pre>    <span class="s">"https://<span class="hey">constellation</span>.microcosm.blue/links/count/<span class="hey">distinct-dids</span>"</span>,</pre>
+            <pre>    <span class="k">params</span>=<span class="b">{</span></pre>
+            <pre>        <span class="s">"target"</span>: <span class="s">"<span class="u"><a href="https://bsky.app/profile/did:plc:hdhoaan3xa3jiuq4fg4mefid/post/3lwcmto4tck2h" target="_blank">at://did:plc:hdhoaan3xa3jiuq4fg4mefid/app.bsky.feed.post/3lwcmto4tck2h</a></span>"</span>,</pre>
+            <pre>        <span class="s">"collection"</span>: <span class="s">"<span class="hey">app.bsky.feed.like</span>"</span>,</pre>
+            <pre>        <span class="s">"path"</span>: <span class="s">"<span class="hey">.subject.uri</span>"</span>,</pre>
+            <pre>    <span class="b">}</span>,</pre>
+            <pre><span class="p">)</span><span class="f">.json</span><span class="p">()</span></pre>
+            <pre></pre>
+            <pre><span class="f">print</span><span class="p">(</span><span class="s">"this post has"</span>, <span class="v">data</span><span class="b">[</span><span class="s">"total"</span><span class="b">]</span>, <span class="s">"likes"</span><span class="p">)</span></pre>
+            <pre class="end"></pre>
+          </div>
+          <div class="action">
+            <!-- todo: notice if js is not enabled -->
+            <button onClick="javascript:get_likes_count_py()">run »</button>
+            <span id="get_likes_count_py_status"></span>
+          </div>
         </div>
-        <div class="action">
-          <!-- todo: notice if js is not enabled -->
-          <button onClick="javascript:get_likes_count_py()">run »</button>
-          <span id="get_likes_count_py_status"></span>
-        </div>
-      </div>
 
-      <div class="source-container hidden" id="subscribe_follows_sh_source">
-        <h4 class="filename">
-          subscribe_follows.sh
-        </h4>
+        <div class="api-info">
+          <p>Constellation crawls <strong>every</strong> record seen in the firehose, and collects every link it can find: all <a href="https://atproto.com/specs/at-uri-scheme" target="_blank"><code>at-uri</code></a>s, every <a href="https://atproto.com/specs/did" target="_blank"><code>DID</code></a>, and any plain old web <a href="https://en.wikipedia.org/wiki/URL" target="_blank"><code>URL</code></a>.</p>
+          <p>Every social interaction in ATProto is a link! Constellation can tell you <em>who <a href="https://constellation.microcosm.blue/links/distinct-dids?target=did%3Aplc%3Aqfpnj4og54vl56wngdriaxug&collection=sh.tangled.graph.follow&path=.subject" class="t5">follows @oppi.li on <code>tangled.sh</code></a></em> and <em>what are the <a href="https://constellation.microcosm.blue/links?target=at://did:plc:nlromb2qyyl6rszaluwhfy6j/fyi.unravel.frontpage.post/3lhd2ivyc422n&collection=fyi.unravel.frontpage.comment&path=.post.uri" class="t3">replies to a <code>frontpage.fyi</code> story</a></em>.</p>
 
-        <div class="source">
-          <pre></pre>
-          <pre><span class="v">HOST</span>=<span class="s">wss://spacedust.microcosm.blue</span></pre>
-          <pre><span class="v">FOLLOW</span>=<span class="hey">app.bsky.graph.follow:subject</span></pre>
-          <pre><span class="v">DID</span>=<span class="u"><a href="https://bsky.app/profile/did:plc:z72i7hdynmk6r22z27h6tvur" target="_blank">did:plc:z72i7hdynmk6r22z27h6tvur</a></span>  <span class="c"># @bsky.app</span></pre>
-          <pre></pre>
-          <pre><span class="f">websocat</span> <span class="s">"<span class="v">$HOST</span>/<span class="hey">subscribe</span>?wantedSources=<span class="v">$FOLLOW</span>&wantedSubjects=<span class="v">$DID</span>"</span></pre>
-          <pre class="end"></pre>
-        </div>
-        <div class="action">
-          <!-- todo: notice if js is not enabled -->
-          <button onClick="javascript:subscribe_follows_sh()">run »</button>
-          <span id="subscribe_follows_sh_status"></span>
+          <div class="api-info-links">
+            <a href="https://constellation.microcosm.blue/" class="t1">API docs</a>
+            <a href="https://tangled.sh/@microcosm.blue/microcosm-rs/blob/main/constellation/readme.md" class="t6">Source</a>
+            <span>Self-host<small>(guide coming soon)</small></span>
+          </div>
         </div>
       </div>
 
-      <div class="source-container hidden" id="handle_to_pds_js_source">
-        <h4 class="filename">
-          handle_to_pds.js
-        </h4>
+      <div class="api-app" id="api-app-spacedust">
+        <div class="source-container hidden" id="subscribe_follows_sh_source">
+          <h4 class="filename">
+            subscribe_follows.sh
+          </h4>
 
-        <div class="source">
-          <pre></pre>
-          <pre>const <span class="v">url</span> = <span class="f">new URL</span><span class="p">(</span><span class="s">"https://<span class="hey">slingshot</span>.microcosm.blue/xrpc/com.bad-example.identity.<span class="hey">resolveMiniDoc</span>"</span><span class="p">)</span>;</pre>
-          <pre><span class="v">url.searchParams</span><span class="f">.set</span>(<span class="s">"identifier"</span>, <span class="s">"<span class="u">bad-example.com</span>"</span>);</pre>
-          <pre></pre>
-          <pre><span class="f">fetch</span><span class="p">(</span><span class="v">url</span><span class="p">)</span></pre>
-          <pre>  <span class="f">.then</span><span class="p">(</span><span class="v">res</span> => <span class="v">res</span><span class="f">.json</span><span class="p">())</span></pre>
-          <pre>  <span class="f">.then</span><span class="p">(</span><span class="v">mini</span> => <span class="v">console</span><span class="f">.log</span><span class="p">(</span><span class="s">`${<span class="v">mini.handle</span>}'s PDS: ${<span class="v">mini.pds</span>}`</span><span class="p">))</span>;</pre>
-          <pre class="end"></pre>
+          <div class="source">
+            <pre></pre>
+            <pre><span class="v">HOST</span>=<span class="s">wss://spacedust.microcosm.blue</span></pre>
+            <pre><span class="v">FOLLOW</span>=<span class="hey">app.bsky.graph.follow:subject</span></pre>
+            <pre><span class="v">DID</span>=<span class="u"><a href="https://bsky.app/profile/did:plc:z72i7hdynmk6r22z27h6tvur" target="_blank">did:plc:z72i7hdynmk6r22z27h6tvur</a></span>  <span class="c"># @bsky.app</span></pre>
+            <pre></pre>
+            <pre><span class="f">websocat</span> <span class="s">"<span class="v">$HOST</span>/<span class="hey">subscribe</span>?wantedSources=<span class="v">$FOLLOW</span>&wantedSubjects=<span class="v">$DID</span>"</span></pre>
+            <pre class="end"></pre>
+          </div>
+          <div class="action">
+            <!-- todo: notice if js is not enabled -->
+            <button onClick="javascript:subscribe_follows_sh()">run »</button>
+            <span id="subscribe_follows_sh_status"></span>
+          </div>
         </div>
-        <div class="action">
-          <!-- todo: notice if js is not enabled -->
-          <button onClick="javascript:handle_to_pds_js()">run »</button>
-          <span id="handle_to_pds_js_status"></span>
+
+        <div class="api-info">
+          <p>Spacedust extracts <strong>links</strong> seen in the firehose, and re-emits them directly. It can <a href="https://bsky.bad-example.com/zero-bluesky-realtime-embed/" class="t2" target="_blank">filter based on link target</a> or even by <em>targetted account</em>.</p>
+
+          <p>Every social interaction in ATProto is a link! With Spacedust you can build things like following graphs and notification services for any <a href="https://atproto.com/guides/lexicon" target="_blank">lexicon</a>.</p>
+
+          <div class="api-info-links">
+            <a href="https://spacedust.microcosm.blue/" class="t1">API docs</a>
+            <a href="https://tangled.sh/@microcosm.blue/microcosm-rs/tree/main/spacedust" class="t6">Source</a>
+            <span>Self-host<small>(guide coming soon)</small></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="api-app" id="api-app-slingshot">
+        <div class="source-container hidden" id="handle_to_pds_js_source">
+          <h4 class="filename">
+            handle_to_pds.js
+          </h4>
+
+          <div class="source">
+            <pre></pre>
+            <pre>const <span class="v">url</span> = <span class="f">new URL</span><span class="p">(</span><span class="s">"https://<span class="hey">slingshot</span>.microcosm.blue/xrpc/com.bad-example.identity.<span class="hey">resolveMiniDoc</span>"</span><span class="p">)</span>;</pre>
+            <pre><span class="v">url.searchParams</span><span class="f">.set</span>(<span class="s">"identifier"</span>, <span class="s">"<span class="u">bad-example.com</span>"</span>);</pre>
+            <pre></pre>
+            <pre><span class="f">fetch</span><span class="p">(</span><span class="v">url</span><span class="p">)</span></pre>
+            <pre>  <span class="f">.then</span><span class="p">(</span><span class="v">res</span> => <span class="v">res</span><span class="f">.json</span><span class="p">())</span></pre>
+            <pre>  <span class="f">.then</span><span class="p">(</span><span class="v">mini</span> => <span class="v">console</span><span class="f">.log</span><span class="p">(</span><span class="s">`${<span class="v">mini.handle</span>}'s PDS: ${<span class="v">mini.pds</span>}`</span><span class="p">))</span>;</pre>
+            <pre class="end"></pre>
+          </div>
+          <div class="action">
+            <!-- todo: notice if js is not enabled -->
+            <button onClick="javascript:handle_to_pds_js()">run »</button>
+            <span id="handle_to_pds_js_status"></span>
+          </div>
+        </div>
+
+        <div class="api-info">
+          <p>Slingshot listens to the firehose to pre-caches records and rapidly evict deleted content. It can retain large chunks of the network, so you get fast, authenticated access to records, even for slow/unreliable upstream PDS hosts.</p>
+
+          <p>Slingshot also resolves (and of course caches) atproto identities! It <strong>only</strong> returns bi-directionally verified handles and DIDs, and has a cute <a href="https://slingshot.microcosm.blue/#tag/slingshot-specific-queries/get/xrpc/com.bad-example.identity.resolveMiniDoc" target="_blank" class="t7"><code>resolveMiniDoc</code></a> endpoint to make safely working with identities as simple as possible.</p>
+
+          <div class="api-info-links">
+            <a href="https://slingshot.microcosm.blue/" class="t1">API docs</a>
+            <a href="https://tangled.sh/@microcosm.blue/microcosm-rs/tree/main/slingshot" class="t6">Source</a>
+            <span>Self-host<small>(guide coming soon)</small></span>
+          </div>
         </div>
       </div>
 
